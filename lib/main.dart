@@ -19,9 +19,12 @@ class MainApp extends RearchConsumer {
   }
 }
 
-int calculateCapsule(CapsuleHandle use) => use(operandA) + use(operandB);
+int calculateCapsule(CapsuleHandle use) =>
+    use(use(operandACapsuleManager)) + use(use(operandBCapsuleManager)!);
 
 int operandA(CapsuleHandle use) => 32;
 
-// int operandB(CapsuleHandle use) => 27;
-int operandB(CapsuleHandle use) => throw ('Not implemented');
+int operandB(CapsuleHandle use) => 27;
+
+Capsule<int> operandACapsuleManager(CapsuleHandle use) => operandA;
+Capsule<int>? operandBCapsuleManager(CapsuleHandle use) => null;
